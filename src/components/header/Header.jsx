@@ -12,7 +12,6 @@ const Header = () => {
           <video src ={Video} autoPlay loop muted/>
         </div>
       <div className="container header__container">
-        
           <div className = "text">
             <h5 className = "greeting">Hello I'm</h5>
             <h1 className = "name">Shaochen Ren</h1>
