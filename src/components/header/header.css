@@ -19,8 +19,8 @@ video{
   top: 0;
   left:0;
   right: 0;
-  width: 100%;
-  height: 100%;
+  width: 10%;
+  height: 8%;
 }
 
 /* =============== CTA ============== */
@@ -36,7 +36,7 @@ video{
   display: flex;
   flex-direction: row;
   align-items: center;
-  gap: 0.8rem;
+  gap: 8rem;
   position: absolute;
   left: 0;
   bottom: 0;
