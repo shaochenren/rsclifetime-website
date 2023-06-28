@@ -7,7 +7,7 @@ header {
 
 .header__container {
   top: 50rem;
-  left: 0rem;
+  left: 2rem;
   text-align: center;
   height: 100%;
   position: relative;
@@ -35,17 +35,18 @@ video{
 /* =============== HEADER SOCIALS ============== */
 .header__socials {
   display: flex;
-  flex-direction: row;
+  flex-direction: column;
   align-items: center;
-  gap: 8rem;
-  position: absolute;
-  left: 0;
-  bottom: 0;
+  gap: 10rem;
+  position: fixed;
+  left: 5rem;
+  bottom: 30rem;
+
 }
 
 .header__socials::after {
   content: "";
-  width: 1px;
+  width: 2px;
   height: 2rem;
   background: var(--color-primary);
 }

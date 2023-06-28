@@ -1,6 +1,6 @@
 .about__container {
   display: grid;
-  grid-template-columns: 35% 50%;
+  grid-template-columns: 20% 50%;
   gap: 15%;
 }
 
@@ -19,10 +19,12 @@
 }
 
 .about__me-image {
-  border-radius: 2rem;
+  border-radius: 6rem;
+  width: 20rem;
   overflow: hidden;
-  transform: rotate(10deg);
+  transform: rotate(20deg);
   transition: var(--transition);
+
 }
 
 .about__me-image:hover {
@@ -31,7 +33,7 @@
 
 .about__cards {
   display: grid;
-  grid-template-columns: repeat(3, 1fr);
+  grid-template-columns: repeat(1, 1fr);
   gap: 1.5rem;
 }
 
