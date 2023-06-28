@@ -24,6 +24,7 @@ const About = () => {
               <FaAward className='about__icon'/>
               <h5>Educaation</h5>
               <small>Computer Science in California State University Fullerton</small>
+              <h5> </h5>
               <small>Computer Science/Cybersecurity in NYU</small>
             </article>
             {/*
