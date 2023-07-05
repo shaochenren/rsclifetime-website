@@ -1,0 +1,32 @@
+/* Navbar.css */
+
+.navbar {
+    
+    background-color: #000000;
+    overflow: hidden;
+    display: flex;
+    justify-content: space-around;
+    padding: 10px 0;
+    visibility: hidden;
+    opacity: 0;
+    transition: opacity 0.5s ease-in-out, visibility 0.5s;
+  }
+  
+  .navbar__link {
+    color: #f2f2f2;
+    text-align: center;
+    padding: 14px 16px;
+    text-decoration: none;
+  }
+
+  .navbar__show {
+    /* Set visibility to visible when the class is added */
+    visibility: visible;
+    opacity: 1;
+  }
+  
+  .navbar__link:hover {
+    background-color: #ddd;
+    color: black;
+  }
+  

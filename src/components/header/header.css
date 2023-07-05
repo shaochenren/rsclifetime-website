@@ -1,7 +1,15 @@
+.navbar {
+  width: 100%;
+  height: 5%;
+  position: fixed;
+  top: 0;
+  z-index: 100; /* This will ensure your navbar stays on top */
+}
 header {
+  padding-top: 4rem; /* Adjust this value as needed, 4rem is just an example */
   height: 100vh;
   width: 100%;
-  padding-top: 0rem;
+  position: relative;
   overflow: hidden;
 }
 
