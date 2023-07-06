@@ -5,7 +5,7 @@
 }
 
 .about__me {
-  width: 100%;
+  width: 80%;
   aspect-ratio: 1/1;
   border-radius: 2rem;
   background: linear-gradient(
@@ -17,6 +17,7 @@
   display: grid;
   place-items: center;
 }
+
 
 .about__me-image {
   border-radius: 6rem;
@@ -33,7 +34,7 @@
 
 .about__cards {
   display: grid;
-  grid-template-columns: repeat(1, 1fr);
+  grid-template-columns: repeat(2, 1fr);
   gap: 1.5rem;
 }
 
