@@ -1,5 +1,6 @@
+// Navbar.js
+
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom'; // Import Link from react-router-dom
 import './topnav.css';
 
 const Navbar = () => {
@@ -19,15 +20,15 @@ const Navbar = () => {
     return () => {
         window.removeEventListener('scroll', checkScroll);
     };
-  }, []);
+}, []);
 
   return (
     <nav className={`navbar ${show && 'navbar__show'}`}>
-      <Link to="/" className="navbar__link">Home</Link>
-      <Link to="/about" className="navbar__link">About</Link>
-      <Link to="/contact" className="navbar__link">Contact</Link>
-      <Link to="/recent-life" className="navbar__link">Recent-life</Link>
-      <Link to="/blogs" className="navbar__link">Blogs</Link>
+      <a href="/home" className="navbar__link">Home</a>
+      <a href="/about" className="navbar__link">About</a>
+      <a href="/contact" className="navbar__link">Contact</a>
+      <a href="/Recent-life" className="navbar__link">Recent-life</a>
+      <a href="/Blogs" className="navbar__link">Blogs</a>
     </nav>
   );
 }
