@@ -17,16 +17,22 @@ const App = () => {
   return (
     <Router>
       <Navbar/>
+      <Routes>
+  <Route path="/about" element={<About />} />
+  <Route path="/contact" element={<Contact />} />
+  <Route path="/recent-life" element={<RecentLife />} />
+  <Route path="/" element={
+    <>
       <Header />
       <Nav />
       <About />
       <Experience />
       <Services />
       <Portfolio />
-      <Routes>
-        <Route path="/contact" component={<Contact />} />
-        <Route path="/components/recent-life/Recent-life" component={<RecentLife />} />
-      </Routes>
+    </>
+  } />
+</Routes>
+
       <Footer />
     </Router>
   );
