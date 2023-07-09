@@ -8,7 +8,7 @@ import Video from '../../assets/video.mp4'
 const Header = () => {
   return (
     <>
-    <Navbar /> {/* Place Navbar at the top */}
+    {/* <Navbar /> Place Navbar at the top */}
     <header>
       
       <div className = 'video'>

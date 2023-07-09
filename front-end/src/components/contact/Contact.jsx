@@ -7,6 +7,7 @@ import { useRef } from 'react';
 import emailjs from 'emailjs-com'
 
 const Contact = () => {
+  console.log('Contact component loaded');
   const form = useRef();
 
   const sendEmail = (e) => {
