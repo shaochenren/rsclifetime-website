@@ -1,33 +1,33 @@
 import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
+import { Link } from 'react-router-dom'; // Import Link from react-router-dom
 import './topnav.css';
 
 const Navbar = () => {
   const [show, setShow] = useState(false);
 
   useEffect(() => {
-    const handleScroll = () => {
-      if (window.scrollY > 100) {
-        setShow(true);
-      } else {
-        setShow(false);
-      }
+    const checkScroll = () => {
+        if (window.scrollY > 0) {
+            setShow(true);
+        } else {
+            setShow(false);
+        }
     };
 
-    window.addEventListener('scroll', handleScroll);
-
+    window.addEventListener('scroll', checkScroll);
+    
     return () => {
-      window.removeEventListener('scroll', handleScroll);
+        window.removeEventListener('scroll', checkScroll);
     };
   }, []);
 
   return (
-    <nav className={`navbar ${show ? 'navbar__show' : ''}`}>
-      <div className="navbar__items">
-        <Link to="/home" className="navbar__link">Home</Link>
-        <Link to="/something" className="navbar__link">Something</Link>
-        <Link to="/contact" className="navbar__link">Contact</Link>
-      </div>
+    <nav className={`navbar ${show && 'navbar__show'}`}>
+      <Link to="/" className="navbar__link">Home</Link>
+      <Link to="/about" className="navbar__link">About</Link>
+      <Link to="/contact" className="navbar__link">Contact</Link>
+      <Link to="/recent-life" className="navbar__link">Recent-life</Link>
+      <Link to="/blogs" className="navbar__link">Blogs</Link>
     </nav>
   );
 }

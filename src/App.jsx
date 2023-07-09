@@ -6,6 +6,7 @@ import Contact from './components/contact/Contact';
 import Header from './components/header/Header';
 import Nav from './components/nav/Nav';
 import About from './components/about/About';
+import RecentLife from './components/recent-life/Recent-life';
 import Experience from './components/experience/Experience';
 import Services from './components/services/Services';
 import Portfolio from './components/portfolio/Portfolio';
@@ -15,17 +16,16 @@ import Footer from './components/footer/Footer';
 const App = () => {
   return (
     <Router>
-
+      <Navbar/>
       <Header />
       <Nav />
       <About />
       <Experience />
       <Services />
       <Portfolio />
-      <Testimonials />
       <Routes>
-        <Route path="/" element={<Home />} />
-        <Route path="/contact" element={<Contact />} />
+        <Route path="/contact" component={<Contact />} />
+        <Route path="/components/recent-life/Recent-life" component={<RecentLife />} />
       </Routes>
       <Footer />
     </Router>
