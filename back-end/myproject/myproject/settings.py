@@ -75,10 +75,15 @@ WSGI_APPLICATION = 'myproject.wsgi.application'
 
 DATABASES = {
     'default': {
-        'ENGINE': 'django.db.backends.sqlite3',
-        'NAME': BASE_DIR / 'db.sqlite3',
+        'ENGINE': 'django.db.backends.mysql',
+        'NAME': 'rscdatabase',
+        'USER': 'root',
+        'PASSWORD': 'Ren660512',
+        'HOST': 'localhost',   # Or the IP Address where your MySQL service is running
+        'PORT': '3306',   # Default MySQL port
     }
 }
+
 
 
 # Password validation
