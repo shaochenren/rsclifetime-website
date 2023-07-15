@@ -25,4 +25,4 @@ yarn-error.log*
 #module ingore
 front-end/node_modules
 
-back-end/keys/rsc-lifetimewebsitekey
+/back-end/keys/
