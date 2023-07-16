@@ -72,3 +72,18 @@
 .navbar__link:hover::after {
   width: 100%;
 }
+
+@media screen and (min-width: 600px) and (max-width: 1024px) {
+  .navbar__link {
+    /* Styles for medium devices (e.g., tablets) go here */
+    width: 60%;
+  }
+}
+
+/* CSS rules for screens that are less than 600px wide */
+@media screen and (max-width: 599px) {
+  .navbar__link {
+    /* Styles for small devices (e.g., phones) go here */
+    width: var(--container-width-sm);
+  }
+}
