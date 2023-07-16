@@ -8,6 +8,14 @@ const RecentLife = () => {
   // Fetching images from API
   useEffect(() => {
     fetchImages();
+
+    // Refresh images every 23 hours (82800000 milliseconds)
+    const timer = setInterval(() => {
+      fetchImages();
+    }, 82800000);
+
+    // Clear the interval when the component is unmounted
+    return () => clearInterval(timer);
   }, []);
 
   const fetchImages = async () => {
