@@ -15,7 +15,7 @@ const RecentLife = () => {
       const response = await fetch('http://localhost:8000/images/');
       const data = await response.json();
       console.log('Fetched data:', data);  // Log the fetched data to the console
-      setImages(data.results);
+      setImages(data);
     } catch (error) {
       console.error('Failed to fetch images:', error);
     }

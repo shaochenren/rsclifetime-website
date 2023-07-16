@@ -16,7 +16,7 @@ def image_upload(request):
 
 
         # upload image_file to Google Cloud Storage
-        storage_client = storage.Client.from_service_account_json('../../keys/rsc-lifetimewebsitekey.json')
+        storage_client = storage.Client.from_service_account_json('../keys/rsc-lifetimewebsitekey.json')
         bucket = storage_client.get_bucket('rsc-lifetime')
         blob = bucket.blob(image_file.name)
         blob.upload_from_file(image_file)
