@@ -1,24 +1,26 @@
 import React, { useEffect, useState } from 'react';
 import "./recent-life.css"
 
-
 const RecentLife = () => {
   // This is where you'll store your images
   const [images, setImages] = useState([]);
-
 
   // Fetching images from API
   useEffect(() => {
     fetchImages();
   }, []);
 
-
   const fetchImages = async () => {
-    const response = await fetch('http://localhost:8000/images/');  // Adjusted the API endpoint
-    const data = await response.json();
-    setImages(data);
+    try {
+      const response = await fetch('http://localhost:8000/images/');
+      const data = await response.json();
+      console.log('Fetched data:', data);  // Log the fetched data to the console
+      setImages(data.results);
+    } catch (error) {
+      console.error('Failed to fetch images:', error);
+    }
   };
-
+  
 
   return (
     <div>
@@ -41,6 +43,5 @@ const RecentLife = () => {
     </div>
   );
 }
-
 
 export default RecentLife;

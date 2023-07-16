@@ -3,7 +3,7 @@ from django.views.decorators.csrf import csrf_exempt
 from google.cloud import storage
 from .models import Image
 from .models import Comment
-from .serializers import CommentSerializer
+from .serializers import CommentSerializer, ImageSerializer
 from rest_framework import viewsets
 from rest_framework import generics
 
@@ -16,8 +16,8 @@ def image_upload(request):
 
 
         # upload image_file to Google Cloud Storage
-        storage_client = storage.Client.from_service_account_json('path/to/your/service-account-file.json')
-        bucket = storage_client.get_bucket('your-bucket-name')
+        storage_client = storage.Client.from_service_account_json('../../keys/rsc-lifetimewebsitekey.json')
+        bucket = storage_client.get_bucket('rsc-lifetime')
         blob = bucket.blob(image_file.name)
         blob.upload_from_file(image_file)
 
@@ -42,6 +42,9 @@ class CommentViewSet(viewsets.ModelViewSet):
     queryset = Comment.objects.all()
     serializer_class = CommentSerializer
 
+class ImageViewSet(viewsets.ReadOnlyModelViewSet):  # Add this
+    queryset = Image.objects.all()
+    serializer_class = ImageSerializer
 
 class CommentList(generics.ListCreateAPIView):
     queryset = Comment.objects.all()
