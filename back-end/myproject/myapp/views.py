@@ -36,17 +36,35 @@ def image_upload(request):
         blob = bucket.blob(image_file.name)
         blob.upload_from_file(image_file)
 
-        # get the signed URL of the uploaded image
-        url = generate_signed_url('rsc-lifetime', image_file.name)
-
-        # create new Image object with this URL and the description
-        Image.objects.create(url=url, description=description)
+        # create new Image object with the blob name and the description
+        Image.objects.create(url=image_file.name, description=description)
 
         return JsonResponse({'message': 'Image uploaded successfully.'})
 
+
 def images(request):
-    image_list = list(Image.objects.values())
+    # Fetch all images from the database
+    images = Image.objects.all()
+
+    # Initialize a list to store the image data
+    image_list = []
+
+    # Iterate over the images
+    for image in images:
+        # Generate a signed URL for the image
+        signed_url = generate_signed_url('rsc-lifetime', image.url)
+
+        # Add the image data (including the signed URL) to the list
+        image_data = {
+            'id': image.id,
+            'url': signed_url,
+            'description': image.description,
+        }
+        image_list.append(image_data)
+
     return JsonResponse(image_list, safe=False)
+
+
 
 class CommentViewSet(viewsets.ModelViewSet):
     queryset = Comment.objects.all()
