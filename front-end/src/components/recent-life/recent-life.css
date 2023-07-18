@@ -1,16 +1,31 @@
-.images-container {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 20px;
-  }
-  
-  .image-card {
-    width: 100%;
-  }
-  
-  /* something */
-  .image-card img {
-    width: 100%;
-    height: 200px;
-    object-fit: cover;    
-  }
+h2 {
+  color: #333;
+  font-size: 24px;
+}
+
+h3 {
+  color: #666;
+  font-size: 20px;
+}
+
+img {
+  width: 10%;
+  height: auto;
+}
+
+.swiper-container {
+  width: 80%;
+  height: 400px;
+  margin: auto;
+}
+
+.swiper-slide {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+.post-card img {
+  width: 100%;
+  height: 100%;
+  object-fit: cover;
+}

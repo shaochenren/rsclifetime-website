@@ -21,6 +21,7 @@ def generate_signed_url(bucket_name, blob_name):
         # Allow GET requests using this URL.
         method="GET",
     )
+    print(url)
 
     return url
 
@@ -29,6 +30,7 @@ def image_upload(request):
     if request.method == 'POST':
         image_file = request.FILES['image']
         description = request.POST['description']
+
 
         # upload image_file to Google Cloud Storage
         storage_client = storage.Client.from_service_account_json('../keys/rsc-lifetimewebsitekey.json')
@@ -48,9 +50,11 @@ def images(request):
 
     # Initialize a list to store the image data
     image_list = []
+    print("hello12")
 
     # Iterate over the images
     for image in images:
+        print("hello")
         # Generate a signed URL for the image
         signed_url = generate_signed_url('rsc-lifetime', image.url)
 

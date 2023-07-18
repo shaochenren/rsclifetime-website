@@ -1,4 +1,7 @@
 import React, { useEffect, useState } from 'react';
+import Slider from "react-slick";
+import "slick-carousel/slick/slick.css"; 
+import "slick-carousel/slick/slick-theme.css";
 import "./recent-life.css"
 
 const RecentLife = () => {
@@ -29,24 +32,33 @@ const RecentLife = () => {
     }
   };
   
+  // Settings for the slider
+  const settings = {
+    dots: true,
+    infinite: true,
+    speed: 500,
+    slidesToShow: 1,
+    slidesToScroll: 1,
+    autoplay: true
+  };
 
   return (
     <div>
       <h2>Recent Life</h2>
       <div className='posts-container'>
+        <Slider {...settings}>
         {images.map((image, index) => (
           <div key={index} className='post-card'>
             <img src={image.url} alt={image.description || "recent life"} />
-            <p>{image.description}</p>  // Display image description
+            <p>{image.description}</p>
             <div>
-              {/* Display comments for each image */}
-              {/* Note: You need to ensure that each image object includes its related comments */}
               {image.comments && image.comments.map((comment, index) => (
                 <p key={index}>{comment.content}</p>
               ))}
             </div>
           </div>
         ))}
+        </Slider>
       </div>
     </div>
   );
