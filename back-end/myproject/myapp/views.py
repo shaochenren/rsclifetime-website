@@ -45,16 +45,24 @@ def image_upload(request):
 
 
 def images(request):
-    # Fetch all images from the database
-    images = Image.objects.all()
+    start_date = request.GET.get('start_date', None)
+    end_date = request.GET.get('end_date', None)
+
+    if start_date is not None and end_date is not None:
+        # Convert strings to datetime objects
+        start_date = datetime.strptime(start_date, '%Y-%m-%d')
+        end_date = datetime.strptime(end_date, '%Y-%m-%d')
+        # Fetch images in date range from the database
+        images = Image.objects.filter(date_posted__range=[start_date, end_date])
+    else:
+        # Fetch all images from the database
+        images = Image.objects.all()
 
     # Initialize a list to store the image data
     image_list = []
-    print("hello12")
 
     # Iterate over the images
     for image in images:
-        print("hello")
         # Generate a signed URL for the image
         signed_url = generate_signed_url('rsc-lifetime', image.url)
 
