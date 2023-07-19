@@ -7,7 +7,9 @@ from .models import Comment
 from .serializers import CommentSerializer, ImageSerializer
 from rest_framework import viewsets
 from rest_framework import generics
-
+from collections import defaultdict
+from django.db.models.functions import TruncDate
+from datetime import datetime
 
 def generate_signed_url(bucket_name, blob_name):
     storage_client = storage.Client.from_service_account_json('../keys/rsc-lifetimewebsitekey.json')
@@ -16,12 +18,11 @@ def generate_signed_url(bucket_name, blob_name):
 
     url = blob.generate_signed_url(
         version="v4",
-        # This URL is valid for 15 minutes
+        # This URL is vali d for 15 minutes
         expiration=24*60*60,
         # Allow GET requests using this URL.
         method="GET",
     )
-    print(url)
 
     return url
 
@@ -30,7 +31,6 @@ def image_upload(request):
     if request.method == 'POST':
         image_file = request.FILES['image']
         description = request.POST['description']
-
 
         # upload image_file to Google Cloud Storage
         storage_client = storage.Client.from_service_account_json('../keys/rsc-lifetimewebsitekey.json')
@@ -43,46 +43,46 @@ def image_upload(request):
 
         return JsonResponse({'message': 'Image uploaded successfully.'})
 
-
 def images(request):
     start_date = request.GET.get('start_date', None)
     end_date = request.GET.get('end_date', None)
 
     if start_date is not None and end_date is not None:
         # Convert strings to datetime objects
-        start_date = datetime.strptime(start_date, '%Y-%m-%d')
-        end_date = datetime.strptime(end_date, '%Y-%m-%d')
+        start_date = datetime.strptime(start_date, '%Y-%m-%dT%H:%M:%S.%fZ')
+        end_date = datetime.strptime(end_date, '%Y-%m-%dT%H:%M:%S.%fZ')
         # Fetch images in date range from the database
-        images = Image.objects.filter(date_posted__range=[start_date, end_date])
+        images = Image.objects.filter(posted_at__range=[start_date, end_date])
     else:
         # Fetch all images from the database
         images = Image.objects.all()
 
-    # Initialize a list to store the image data
-    image_list = []
+    # Annotate images with their posting date
+    images = images.annotate(posting_date=TruncDate('posted_at')).order_by('-posting_date')
+
+    # Initialize a dictionary to store the image data grouped by date
+    image_dict = defaultdict(list)
 
     # Iterate over the images
     for image in images:
         # Generate a signed URL for the image
         signed_url = generate_signed_url('rsc-lifetime', image.url)
 
-        # Add the image data (including the signed URL) to the list
+        # Add the image data (including the signed URL) to the corresponding date in the dict
         image_data = {
             'id': image.id,
             'url': signed_url,
             'description': image.description,
         }
-        image_list.append(image_data)
+        image_dict[image.posting_date.isoformat()].append(image_data)
 
-    return JsonResponse(image_list, safe=False)
-
-
+    return JsonResponse(image_dict, safe=False)
 
 class CommentViewSet(viewsets.ModelViewSet):
     queryset = Comment.objects.all()
     serializer_class = CommentSerializer
 
-class ImageViewSet(viewsets.ReadOnlyModelViewSet):  # Add this
+class ImageViewSet(viewsets.ReadOnlyModelViewSet):
     queryset = Image.objects.all()
     serializer_class = ImageSerializer
 

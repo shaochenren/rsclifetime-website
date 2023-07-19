@@ -2,31 +2,32 @@ import React, { useEffect, useState } from 'react';
 import Slider from "react-slick";
 import "slick-carousel/slick/slick.css"; 
 import "slick-carousel/slick/slick-theme.css";
+import DatePicker from "react-datepicker";
+import "react-datepicker/dist/react-datepicker.css";
 import "./recent-life.css"
 
 const RecentLife = () => {
-  // This is where you'll store your images
-  const [images, setImages] = useState([]);
+  // This is where you'll store your images grouped by date
+  const [imageGroups, setImageGroups] = useState({});
+  const [startDate, setStartDate] = useState(null);
+  const [endDate, setEndDate] = useState(null);
 
-  // Fetching images from API
   useEffect(() => {
-    fetchImages();
-
-    // Refresh images every 23 hours (82800000 milliseconds)
-    const timer = setInterval(() => {
+    if (startDate && endDate) {
       fetchImages();
-    }, 82800000);
-
-    // Clear the interval when the component is unmounted
-    return () => clearInterval(timer);
-  }, []);
+    }
+  }, [startDate, endDate]);
 
   const fetchImages = async () => {
     try {
-      const response = await fetch('http://localhost:8000/images/');
+      let url = 'http://localhost:8000/images/';
+      if (startDate && endDate) {
+        url += `?start_date=${startDate.toISOString()}&end_date=${endDate.toISOString()}`;
+      }
+      const response = await fetch(url);
       const data = await response.json();
       console.log('Fetched data:', data);  // Log the fetched data to the console
-      setImages(data);
+      setImageGroups(data);
     } catch (error) {
       console.error('Failed to fetch images:', error);
     }
@@ -45,21 +46,31 @@ const RecentLife = () => {
   return (
     <div>
       <h2>Recent Life</h2>
-      <div className='posts-container'>
-        <Slider {...settings}>
-        {images.map((image, index) => (
-          <div key={index} className='post-card'>
-            <img src={image.url} alt={image.description || "recent life"} />
-            <p>{image.description}</p>
-            <div>
-              {image.comments && image.comments.map((comment, index) => (
-                <p key={index}>{comment.content}</p>
-              ))}
-            </div>
-          </div>
-        ))}
-        </Slider>
+      <div>
+        <DatePicker selected={startDate} onChange={date => setStartDate(date)} isClearable placeholderText="From date" />
+        <DatePicker selected={endDate} onChange={date => setEndDate(date)} isClearable placeholderText="To date" />
+        <button onClick={fetchImages} style={{ zIndex: 1000 }}>Load Images</button>
       </div>
+      {Object.keys(imageGroups).map((date) => (
+        <div key={date}>
+          <h3>{date}</h3>
+          <div className='posts-container'>
+            <Slider {...settings}>
+              {imageGroups[date].map((image, index) => (
+                <div key={index} className='post-card'>
+                  <img src={image.url} alt={image.description || "recent life"} />
+                  <p>{image.description}</p>
+                  <div>
+                    {image.comments && image.comments.map((comment, index) => (
+                      <p key={index}>{comment.content}</p>
+                    ))}
+                  </div>
+                </div>
+              ))}
+            </Slider>
+          </div>
+        </div>
+      ))}
     </div>
   );
 }
