@@ -49,10 +49,32 @@ button {
   box-shadow: 0 9px #999;
 }
 
+.loader-container {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  height: 100vh;
+}
+
 button:hover {background-color: #3e8e41}
 
 button:active {
   background-color: #3e8e41;
   box-shadow: 0 5px #666;
   transform: translateY(4px);
+}
+
+.date-instruction {
+  color: #fc0; /* Change to your preferred color */
+  text-shadow: 0 0 5px rgba(255,0,0,0.5); /* Add some glow */
+  animation: glow 2s ease-in-out infinite alternate; /* Add some animation */
+}
+
+@keyframes glow {
+  from {
+    text-shadow: 0 0 10px #fc0, 0 0 20px #fc0, 0 0 30px #fc0, 0 0 40px #fc0;
+  }
+  to {
+    text-shadow: 0 0 20px #fc0, 0 0 30px #fc0, 0 0 40px #fc0, 0 0 50px #fc0, 0 0 60px #fc0;
+  }
 }

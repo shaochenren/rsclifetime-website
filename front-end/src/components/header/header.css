@@ -14,11 +14,13 @@ header {
 }
 
 .header__container {
-  top: 50rem;
-  left: 2rem;
   text-align: center;
   height: 100%;
   position: relative;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
 }
 
 /* =============== video ============== */

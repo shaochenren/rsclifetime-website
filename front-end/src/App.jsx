@@ -10,29 +10,31 @@ import RecentLife from './components/recent-life/Recent-life';
 import Experience from './components/experience/Experience';
 import Services from './components/services/Services';
 import Portfolio from './components/portfolio/Portfolio';
+import ScrollToTop from './components/scrolltotop/ScrollToTop';
 import Testimonials from './components/testimonials/Testimonials';
 import Footer from './components/footer/Footer';
+
 
 const App = () => {
   return (
     <Router>
+      <ScrollToTop /> {/* Add the ScrollToTop component here */}
       <Navbar/>
       <Routes>
-  <Route path="/about" element={<About />} />
-  <Route path="/contact" element={<Contact />} />
-  <Route path="/recent-life" element={<RecentLife />} />
-  <Route path="/" element={
-    <>
-      <Header />
-      <Nav />
-      <About />
-      <Experience />
-      <Services />
-      <Portfolio />
-    </>
-  } />
-</Routes>
-
+        <Route path="/about" element={<About />} />
+        <Route path="/contact" element={<Contact />} />
+        <Route path="/recent-life" element={<RecentLife />} />
+        <Route path="/" element={
+          <>
+            <Header />
+            <Nav />
+            <About />
+            <Experience />
+            <Services />
+            <Portfolio />
+          </>
+        } />
+      </Routes>
       <Footer />
     </Router>
   );

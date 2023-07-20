@@ -5,20 +5,21 @@ import "slick-carousel/slick/slick-theme.css";
 import DatePicker from "react-datepicker";
 import "react-datepicker/dist/react-datepicker.css";
 import "./recent-life.css"
+import CircularProgress from '@material-ui/core/CircularProgress';
 
 const RecentLife = () => {
   // This is where you'll store your images grouped by date
   const [imageGroups, setImageGroups] = useState({});
   const [startDate, setStartDate] = useState(null);
   const [endDate, setEndDate] = useState(null);
+  const [isLoading, setIsLoading] = useState(false);
 
   useEffect(() => {
-    if (startDate && endDate) {
-      fetchImages();
-    }
-  }, [startDate, endDate]);
+    fetchImages();
+  }, []); // Fetching images as soon as the component mounts
 
   const fetchImages = async () => {
+    setIsLoading(true);
     try {
       let url = 'http://localhost:8000/images/';
       if (startDate && endDate) {
@@ -31,6 +32,7 @@ const RecentLife = () => {
     } catch (error) {
       console.error('Failed to fetch images:', error);
     }
+    setIsLoading(false);
   };
   
   // Settings for the slider
@@ -45,13 +47,18 @@ const RecentLife = () => {
 
   return (
     <div>
-      <h2>Recent Life</h2>
       <div>
+        <h2 className='date-instruction'>🔍 Looking for a specific date? Use me! 🔎</h2>
         <DatePicker selected={startDate} onChange={date => setStartDate(date)} isClearable placeholderText="From date" />
         <DatePicker selected={endDate} onChange={date => setEndDate(date)} isClearable placeholderText="To date" />
         <button onClick={fetchImages} style={{ zIndex: 1000 }}>Load Images</button>
       </div>
-      {Object.keys(imageGroups).map((date) => (
+      {isLoading && 
+        <div className='loader-container'>
+          <CircularProgress size={100} color="primary" />
+        </div>
+      }
+      {!isLoading && Object.keys(imageGroups).map((date) => (
         <div key={date}>
           <h3>{date}</h3>
           <div className='posts-container'>
