@@ -14,7 +14,7 @@ header {
 }
 
 .header__container {
-  top: 50rem;
+  top: 30rem;
   left: 2rem;
   text-align: center;
   height: 100%;
@@ -48,9 +48,9 @@ video{
   gap: 10rem;
   position: fixed;
   left: 5rem;
-  bottom: 25rem;
-
+  bottom: 15rem;
 }
+
 
 .header__socials::after {
   content: "";

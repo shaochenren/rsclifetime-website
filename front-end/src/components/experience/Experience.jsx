@@ -1,106 +1,76 @@
-import React from 'react'
-import './experience.css'
-import {BsPatchCheckFill} from 'react-icons/bs'
+import React from 'react';
+import './experience.css';
+import { BsPatchCheckFill } from 'react-icons/bs';
 
-const Experience = () => {
-  return (
-    <section id='experience'>
-      <h5>What Skills I Have</h5>
-      <h2>My Experience</h2>
-      
-      <div className="container experience__container">
-        <div className="experience__frontend">
-          <h3>Frontend Development</h3>
-          <div className="experience__content">
-            <article className='experience__details'>
-              <BsPatchCheckFill className='experience__details-icon' />
-              <div>
-                <h4>HTML</h4>
-                <small className='text-light'>Experienced</small>
-              </div>
-            </article>
-            <article className='experience__details'>
-              <BsPatchCheckFill className='experience__details-icon' />
-              <div>
-                <h4>CSS</h4>
-                <small className='text-light'>Intermediate</small>
-              </div>
-            </article>
-            <article className='experience__details'>
-              <BsPatchCheckFill className='experience__details-icon' />
-              <div>
-                <h4>JavaScript</h4>
-                <small className='text-light'>Experienced</small>
-              </div>
-            </article>
-            <article className='experience__details'>
-              <BsPatchCheckFill className='experience__details-icon' />
-              <div>
-                <h4>Bootstrap</h4>
-                <small className='text-light'>Experienced</small>
-              </div>
-            </article>
-            <article className='experience__details'>
-              <BsPatchCheckFill className='experience__details-icon' />
-              <div>
-                <h4>Tailwind</h4>
-                <small className='text-light'>Experienced</small>
-              </div>
-            </article>
-            <article className='experience__details'>
-              <BsPatchCheckFill className='experience__details-icon' />
-              <div>
-                <h4>React</h4>
-                <small className='text-light'>Experienced</small>
-              </div>
-            </article>
-          </div>
-        </div>
-        {/* END OF FRONTEND */}
+const SkillsInterests = () => {
+    return (
+        <section id='skills-interests'>
+            <h5>My Expertise & Interests</h5>
+            <h2>Skills & Interests</h2>
 
-        <div className="experience__backend">
-        <h3>Backend Development</h3>
-          <div className="experience__content">
-            <article className='experience__details'>
-              <BsPatchCheckFill className='experience__details-icon' />
-              <div>
-                <h4>Node JS</h4>
-                <small className='text-light'>Experienced</small>
-              </div>
-            </article>
-            <article className='experience__details'>
-              <BsPatchCheckFill className='experience__details-icon' />
-              <div>
-                <h4>MongoDB</h4>
-                <small className='text-light'>Intermediate</small>
-              </div>
-            </article>
-            <article className='experience__details'>
-              <BsPatchCheckFill className='experience__details-icon' />
-              <div>
-                <h4>PHP</h4>
-                <small className='text-light'>Intermediate</small>
-              </div>
-            </article>
-            <article className='experience__details'>
-              <BsPatchCheckFill className='experience__details-icon' />
-              <div>
-                <h4>MySQL</h4>
-                <small className='text-light'>Basic</small>
-              </div>
-            </article>
-            <article className='experience__details'>
-              <BsPatchCheckFill className='experience__details-icon' />
-              <div>
-                <h4>Python</h4>
-                <small className='text-light'>Experienced</small>
-              </div>
-            </article>
-          </div>
-        </div>
-      </div>
-    </section>
-  )
+            <div className="container skills__container">
+
+                {/* Development Skills */}
+                <div className="skills__development">
+                    <h3>Development</h3>
+                    <div className="skills__content">
+                        <SkillItem skillName="HTML" proficiency="Experienced" />
+                        <SkillItem skillName="CSS" proficiency="Intermediate" />
+                        <SkillItem skillName="JavaScript" proficiency="Experienced" />
+                        <SkillItem skillName="React" proficiency="Experienced" />
+                        <SkillItem skillName="Node.js" proficiency="Experienced" />
+                        <SkillItem skillName="PHP" proficiency="Intermediate" />
+                    </div>
+                </div>
+
+                {/* Database Skills */}
+                <div className="skills__database">
+                    <h3>Database Management</h3>
+                    <div className="skills__content">
+                        <SkillItem skillName="SQL" proficiency="Intermediate" />
+                        <SkillItem skillName="PostgreSQL" proficiency="Intermediate" />
+                        <SkillItem skillName="MongoDB" proficiency="Intermediate" />
+                        <SkillItem skillName="OracleDB" proficiency="Basic" />
+                    </div>
+                </div>
+
+                {/* AI Skills */}
+                <div className="skills__ai">
+                    <h3>Artificial Intelligence</h3>
+                    <div className="skills__content">
+                        <SkillItem skillName="TensorFlow" proficiency="Intermediate" />
+                        <SkillItem skillName="Keras" proficiency="Intermediate" />
+                        <SkillItem skillName="PyTorch" proficiency="Intermediate" />
+                    </div>
+                </div>
+
+                {/* Tools & Technologies */}
+                <div className="skills__tools">
+                    <h3>Tools & Technologies</h3>
+                    <div className="skills__content">
+                        <SkillItem skillName="Git" proficiency="Experienced" />
+                        <SkillItem skillName="Docker" proficiency="Intermediate" />
+                        <SkillItem skillName="Webpack" proficiency="Intermediate" />
+                        <SkillItem skillName="Nginx" proficiency="Basic" />
+                        <SkillItem skillName="Jenkins" proficiency="Basic" />
+                    </div>
+                </div>
+
+            </div>
+        </section>
+    )
 }
 
-export default Experience
+const SkillItem = ({ skillName, proficiency }) => {
+    return (
+        <article className='skills__details'>
+            <BsPatchCheckFill className='skills__details-icon' />
+            <div>
+                <h4>{skillName}</h4>
+                <small className='text-light'>{proficiency}</small>
+            </div>
+        </article>
+    );
+}
+
+export default SkillsInterests;
