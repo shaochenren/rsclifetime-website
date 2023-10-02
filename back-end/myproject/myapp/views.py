@@ -75,6 +75,7 @@ def images(request):
             'description': image.description,
         }
         image_dict[image.posting_date.isoformat()].append(image_data)
+    print(image_dict)
 
     return JsonResponse(image_dict, safe=False)
 

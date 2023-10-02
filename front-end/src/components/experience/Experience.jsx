@@ -14,11 +14,11 @@ const SkillsInterests = () => {
                 <div className="skills__development">
                     <h3>Development</h3>
                     <div className="skills__content">
-                        <SkillItem skillName="HTML" proficiency="Experienced" />
-                        <SkillItem skillName="CSS" proficiency="Intermediate" />
-                        <SkillItem skillName="JavaScript" proficiency="Experienced" />
-                        <SkillItem skillName="React" proficiency="Experienced" />
-                        <SkillItem skillName="Node.js" proficiency="Experienced" />
+                        <SkillItem skillName="HTML" proficiency="Proficient" />
+                        <SkillItem skillName="CSS" proficiency="Proficient" />
+                        <SkillItem skillName="JavaScript" proficiency="Proficient" />
+                        <SkillItem skillName="React" proficiency="Proficient" />
+                        <SkillItem skillName="Node.js" proficiency="Intermediate" />
                         <SkillItem skillName="PHP" proficiency="Intermediate" />
                     </div>
                 </div>
@@ -48,10 +48,10 @@ const SkillsInterests = () => {
                 <div className="skills__tools">
                     <h3>Tools & Technologies</h3>
                     <div className="skills__content">
-                        <SkillItem skillName="Git" proficiency="Experienced" />
+                        <SkillItem skillName="Git" proficiency="Proficient" />
                         <SkillItem skillName="Docker" proficiency="Intermediate" />
                         <SkillItem skillName="Webpack" proficiency="Intermediate" />
-                        <SkillItem skillName="Nginx" proficiency="Basic" />
+                        <SkillItem skillName="Nginx" proficiency="Intermediate" />
                         <SkillItem skillName="Jenkins" proficiency="Basic" />
                     </div>
                 </div>

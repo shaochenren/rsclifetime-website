@@ -3,8 +3,10 @@ import os
 from dotenv import load_dotenv
 
 BASE_DIR = Path(__file__).resolve().parent.parent
+load_dotenv()
 
-SECRET_KEY = 'django-insecure-qh!y=c8x*z0v=tp5c*0&05%9yup!jsh6#m&16+f%%-8r*6a71k'
+SECRET_KEY = os.getenv('Private_key')
+
 
 DEBUG = True
 
@@ -53,7 +55,7 @@ TEMPLATES = [
 
 WSGI_APPLICATION = 'myproject.wsgi.application'
 
-load_dotenv()
+
 
 DATABASES = {
     'default': {
